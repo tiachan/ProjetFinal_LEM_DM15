@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/posts', function () {
+    return App\Post::all();
+});
+
+Route::get('/post/{id}', function () {
+    return App\Post::find($id);
+});
