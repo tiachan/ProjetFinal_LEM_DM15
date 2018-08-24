@@ -19,7 +19,7 @@ Route::get('/', 'FrontController@index');
 
 Route::get('/post/{id}', 'FrontController@show')->where(['id'=>'[0-9]+']);
 
-Route::get('/post/{post_types}', 'PostTypeController@show')->where(['post_types'=>'[a-z]+']);
+Route::get('/post/{post_type}', 'PostTypeController@show')->where(['post_type'=>'formation|stage']);
 
 // Route::get('/posts', function () {
 //     return App\Post::all();

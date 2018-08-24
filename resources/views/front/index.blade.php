@@ -4,7 +4,7 @@
 <h1>Tous les posts</h1>
 {{$posts->links()}}
 <ul class="list-group">
-@forelse($posts as $post)
+@forelse ($posts as $post)
 <li class="list-group-item">
 <h2><a href="{{url('post', $post->id)}}">{{$post->title}}</a></h2>
 <div class="row">
@@ -19,6 +19,4 @@
 @endforelse
 </ul>
 {{$posts->links()}}
-@endsection 
-
-
+@endsection

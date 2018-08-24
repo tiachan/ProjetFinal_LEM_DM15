@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Post::class, function (Faker $faker) {
     return [
-    	'post_types'=>$faker->randomElement(['formation', 'stage', 'indéfini']),
+    	'post_type'=>$faker->randomElement(['formation', 'stage', 'undefined']),
         'title' => $faker->sentence(),
         'description' => $faker->paragraph(2),
         'start_date'=> $faker->dateTime($max = 'now', $timezone = null),
