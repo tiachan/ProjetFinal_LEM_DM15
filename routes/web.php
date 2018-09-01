@@ -32,3 +32,6 @@ Route::get('/post/{post_type}', 'PostTypeController@show')->where(['post_type'=>
 // Route::get('/post/{post_types}', function (string $post_types) {
 //     return App\Post::find($post_types);
 // });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
