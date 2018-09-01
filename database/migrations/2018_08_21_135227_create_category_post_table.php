@@ -28,11 +28,13 @@ class CreateCategoryPostTable extends Migration
      */
     public function down()
     {
-             Schema::table('posts', function (Blueprint $table) {
-                    $table->dropForeign('category_post_category_id_foreign');
-                    $table->dropColumn('category_id');
-                    $table->dropForeign('category_post_post_id_foreign');
-                    $table->dropColumn('post_id');   
-        });
+        //      Schema::table('posts', function (Blueprint $table) {
+        //             $table->dropForeign('category_post_category_id_foreign');
+        //             $table->dropColumn('category_id');
+        //             $table->dropForeign('category_post_post_id_foreign');
+        //             $table->dropColumn('post_id');   
+        // });
+                        Schema::dropIfExists('category_post');
+
     }
 }

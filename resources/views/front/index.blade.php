@@ -12,6 +12,9 @@
 
 <div class="col-xs-6 col-md-8">
 {{$post->description}}
+<br>
+{{$post->category}}
+
 </div>
 </div>
 

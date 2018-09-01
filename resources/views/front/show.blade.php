@@ -8,7 +8,10 @@
     <h1>{{$post->title}} - {{$post->post_type}}</h1>
 
     <h2>Description :</h2>
-    {{$post->description}}    
+    {{$post->description}}  
+    <br>
+    {{$post->category}}
+  
    <p>Dates :  {{$post->start_date}} - {{$post->end_date}}</p>
    <p>Prix : {{$post->price}} - Nombre max d'étudiants : {{$post->nb_max}}</p>
     @else 

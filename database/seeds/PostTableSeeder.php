@@ -11,7 +11,9 @@ class PostTableSeeder extends Seeder
 	{
 		factory(App\Post::class, 40)->create()->each(function($post){
 
-            //Pour les images: ne pas oublier le champ post_id
+        //suppression des images avant de lancer les seeds
+         // Storage::disk('local')->delete(Storage::allFiles());
+
             $link = str_random(12) . '.jpg';
 
             $file = file_get_contents('http://via.placeholder.com/250x250/' . rand(1, 9));
@@ -24,9 +26,8 @@ class PostTableSeeder extends Seeder
 
             $post->save();
 
-            // $categories =App\Category::pluck('id')->shuffle()->slice(0,rand(1,3))->all();
-
-            // $post->categories()->attach($categories);
+            $category = App\Category::find(rand(1,4));
+            $post->categories()->attach($category);
 
         });
         }

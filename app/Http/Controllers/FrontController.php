@@ -41,4 +41,9 @@ class FrontController extends Controller
         return view('front.show', ['post' => $post, 'picture' => $picture]);
     }
 
+        public function contact()
+    {
+        return view('front.contact');
+    }
+
 }
