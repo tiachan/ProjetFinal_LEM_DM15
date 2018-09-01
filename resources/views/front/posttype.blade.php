@@ -5,7 +5,7 @@
 <ul class="list-group">
 	@forelse ($posts as $post)
 	<li class="list-group-item">
-		<h2><a href="{{url('post', $post->id)}}">{{$post->title}}</a></h2>
+		<h2><a href="{{url('post', $post->id)}}">{{$post->title}}</a></h2><img class="card-img-top" src="{{url('images', $post->picture->link)}}" style="width: 250px;" alt="Card image cap">
 		<div class="row">
 			<div class="col-xs-6 col-md-8">
 				{{$post->description}}

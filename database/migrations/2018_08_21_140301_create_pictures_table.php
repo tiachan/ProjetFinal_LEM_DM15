@@ -18,7 +18,9 @@ class CreatePicturesTable extends Migration
             $table->unsignedInteger('post_id')->nullable();
             $table->foreign('post_id')->references('id')->on('posts');
             $table->string('link', 100);
-            $table->string('title', 100)->nullable();        
+            $table->string('title', 100)->nullable();
+            $table->timestamps();
+        
         });
     }
 
@@ -30,10 +32,11 @@ class CreatePicturesTable extends Migration
    public function down()
     {
 
-         Schema::table('posts', function (Blueprint $table) {
-                    $table->dropForeign('pictures_post_id_foreign');
-                    $table->dropColumn('post_id');
+        //  Schema::table('posts', function (Blueprint $table) {
+        //             //$table->dropForeign('pictures_post_id_foreign');
+        //             //$table->dropColumn('post_id');
 
-        });    
+        // });  
+        Schema::dropIfExists('pictures');  
      }
 }
