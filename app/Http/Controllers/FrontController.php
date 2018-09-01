@@ -20,13 +20,24 @@ class FrontController extends Controller
 
     }
 
+    public function showResearch(Request $request){
+
+        $query = $request->search;
+
+        $posts = \App\Post::where('title', 'LIKE', '%' . $query . '%')
+            ->orWhere('description', 'LIKE', '%' . $query . '%')
+            ->orWhere('post_type', 'LIKE', '%' . $query . '%')
+            ->paginate(5);
+
+        return view('front.search', ['posts' => $posts]); 
+
+    }
+
     public function show(int $id){
 
-        // vous ne récupérez qu'un seul livre 
         $post = \App\Post::find($id);
         $picture = \App\Picture::find($id);
 
-        // que vous passez à la vue
         return view('front.show', ['post' => $post, 'picture' => $picture]);
     }
 

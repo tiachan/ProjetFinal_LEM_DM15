@@ -17,6 +17,9 @@
 
 Route::get('/', 'FrontController@index');
 
+Route::get('/search', 'FrontController@showResearch')->name('search');;
+
+
 Route::get('/post/{id}', 'FrontController@show')->where(['id'=>'[0-9]+']);
 
 Route::get('/post/{post_type}', 'PostTypeController@show')->where(['post_type'=>'formation|stage']);

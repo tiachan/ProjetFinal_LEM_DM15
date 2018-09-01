@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<h1>Tous les posts</h1>
+<h1>Résultat de la recherche</h1>
 {{$posts->links()}}
 <ul class="list-group">
 @forelse ($posts as $post)
@@ -20,8 +20,5 @@
 @endforelse
 </ul>
 {{$posts->links()}}
- <form class="form-inline my-2 my-lg-0"  action="{{route('search')}}" method="get">
-      <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+ 
 @endsection
