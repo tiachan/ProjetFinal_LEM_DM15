@@ -14,6 +14,19 @@ class PostTableSeeder extends Seeder
         //suppression des images avant de lancer les seeds
          // Storage::disk('local')->delete(Storage::allFiles());
 
+             App\Category::create([
+            'title' => 'DevOPS'
+            ]);
+            App\Category::create([
+                'title' => 'Javascript'
+            ]);
+            App\Category::create([
+                'title' => 'PHP'
+            ]);
+            App\Category::create([
+                'title' => 'Soft skills'
+            ]);
+
             $link = str_random(12) . '.jpg';
 
             $file = file_get_contents('http://via.placeholder.com/250x250/' . rand(1, 9));
