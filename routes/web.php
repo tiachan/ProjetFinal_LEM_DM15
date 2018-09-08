@@ -41,3 +41,5 @@ Route::get('/contact', 'FrontController@contact')->name('contact');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('admin/post', 'PostController')->middleware('auth');

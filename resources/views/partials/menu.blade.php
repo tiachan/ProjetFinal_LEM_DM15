@@ -13,6 +13,23 @@
               <a class="nav-item" href="/contact">Contact</a>
             </li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{-- renvoie true si vous êtes connecté --}}
+                @if(Auth::check())
+                <li><a href="{{route('post.index')}}">Dashboard</a></li> 
+                <li><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                </a>
+                </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>  
+                @else 
+                <li><a href="{{route('login')}}">Login</a></li>   
+                @endif
+            </ul>
         </div>
     </div>
 </nav>
