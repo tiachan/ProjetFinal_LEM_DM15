@@ -34,6 +34,9 @@ class PostController extends Controller
         $this->authorize('create', Post::class);
         $categories = Category::pluck('title', 'id')->all();
         return view('back.post.create', ['categories' => $categories]);
+
+        $post->save();
+        return redirect()->route('post.index')->with('success', 'Le post à bien été créé');
     }
     /**
      * Store a newly created resource in storage.
@@ -47,6 +50,8 @@ class PostController extends Controller
             'title' => 'required',
             'description' => 'required|string',
             'category_id' => 'integer',
+            'status' => 'in:published,unpublished'
+
         ]);
         $post = Post::create($request->all());
         $file = $request->file('picture');
@@ -57,7 +62,7 @@ class PostController extends Controller
         
         $post->categories()->attach($request->categories);
         $post->save();
-        return redirect()->route('post.index')->with('success', 'Le post a bien été ajouté');
+        return redirect()->route('post.index')->with('message', 'success');
     }
     /**
      * Display the specified resource.

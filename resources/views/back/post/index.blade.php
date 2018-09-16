@@ -24,7 +24,7 @@
                     @if(isset($post->category->title))
                         {{ucfirst($post->category->title)}}
                     @else
-                        Pas de genre
+                        Pas de catégorie
                     @endif
                 </td>
                 <td>{{date_format($post->created_at, 'd/m/Y à H:i:s')}}</td>
