@@ -19,11 +19,12 @@ class CreatePostsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->enum('post_type', ['formation', 'stage', 'undefined']);
             $table->string('title', 100);
-            $table->string('description');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->decimal('price', 7, 2);
-            $table->smallInteger('nb_max');
+            $table->string('description')->nullable();
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+            $table->decimal('price', 7, 2)->nullable();
+            $table->smallInteger('nb_max')->nullable();
+            $table->enum('status', ['publié', 'non publié'])->default('non publié');
             $table->timestamps();
         });
     }

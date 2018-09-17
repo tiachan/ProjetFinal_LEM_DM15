@@ -8,7 +8,15 @@ class Post extends Model
 {
 
 	protected $fillable = [
-        'title', 'description', 'category_id'
+        'title', 
+        'description', 
+        'category_id',
+        'post_type',
+        'start_date',
+        'end_date',
+        'price',
+        'nb_max',
+        'status'
     ];
 
     public function setCategoryIdAttribute($value){

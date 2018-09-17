@@ -6,7 +6,7 @@
         </div>
         <div class="row">
             <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
+                    {{ csrf_field() }}
                 <div class="col-6">
                     <div class="form-group">
                         <label for="title">Titre: </label>
@@ -22,6 +22,52 @@
                         @if($errors->has('description'))
                             <div class="alert alert-danger mt-1">{{$errors->first('description')}}</div>
                         @endif
+                    </div>
+
+                      <div class="form-group">
+                        <label for="start_date">Date de début :</label>
+                        <input type="date" name="start_date" value="{{$post->start_date}}" class="form-control" id="start_date">
+                        @if($errors->has('start_date'))
+                            <div class="alert alert-danger" role="alert">
+                                <span class="error">{{$errors->first('start_date')}}</span>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="$post->end_date">Date de fin :</label>
+                        <input type="date" name="end_date" value="{{$post->end_date}}" class="form-control" id="end_date">
+                        @if($errors->has('end_date'))
+                            <div class="alert alert-danger" role="alert">
+                                <span class="error">{{$errors->first('end_date')}}</span>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Prix :</label>
+                        <input type="text" name="price" value="{{$post->price}}" class="form-control" placeholder="3,4"></input>
+                        @if($errors->has('price'))
+                            <div class="alert alert-danger" role="alert">
+                                <span class="error">{{$errors->first('price')}}</span>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="nb_max">Nombre d'élèves maximum :</label>
+                        <input type="text" name="nb_max" value="{{$post->nb_max}}" class="form-control" placeholder="400"></input>
+                        @if($errors->has('nb_max'))
+                            <div class="alert alert-danger" role="alert">
+                                <span class="error">{{$errors->first('nb_max')}}</span>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="post_type">type de post :</label>
+                        <select name="post_type" id="post_type">
+                            <option value="undetermined" {{ $post->post_type == "" ? 'selected' : '' }}></option>
+                            <option value="stage" {{ $post->post_type == "stage" ? 'selected' : '' }}>Stage</option>
+                            <option value="formation" {{ $post->post_type == "formation" ? 'selected' : '' }}>Formation</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -41,15 +87,15 @@
                         <h2>Status</h2>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="status" id="status" value="1" {{old('status') == 1 ? "checked" : ""}}>
+                                <input type="radio" class="form-check-input" name="status" id="status" value="publié" {{old('status') == 1 ? "checked" : ""}}>
                                 Publié
                             </label>
                         </div>
 
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="status" id="status" value="0" {{old('status') == 0 ? "checked" : ""}}>
-                                Dépublié
+                                <input type="radio" class="form-check-input" name="status" id="status" value="non publié" {{old('status') == 0 ? "checked" : ""}}>
+                                Non publié
                             </label>
                         </div>
                     </div>
@@ -61,9 +107,7 @@
                 </div>
 
 
-                <div class="form-group">
                     <button class="btn btn-success" type="submit">Valider le formulaire</button>
-                </div>
 
 
             </form>

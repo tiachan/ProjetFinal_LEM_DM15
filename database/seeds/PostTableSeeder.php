@@ -29,10 +29,8 @@ class PostTableSeeder extends Seeder
             factory(App\Post::class, 40)->create()->each(function($post){
 
 
-            //  // associons une catégorie à un post que nous venons de créer
             // $category = App\Category::find(rand(1,3));
 
-            // // pour chaque $post on lui associe une catégorie en particulier
             // $post->categories()->associate($category);
 
             $post->save();

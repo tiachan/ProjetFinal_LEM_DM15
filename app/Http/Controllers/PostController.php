@@ -36,7 +36,7 @@ class PostController extends Controller
         return view('back.post.create', ['categories' => $categories]);
 
         $post->save();
-        return redirect()->route('post.index')->with('success', 'Le post à bien été créé');
+        // return redirect()->route('post.index')->with('success', 'Le post à bien été créé');
     }
     /**
      * Store a newly created resource in storage.
@@ -46,11 +46,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        // var_dump($request);
+
         $this->validate($request, [
             'title' => 'required',
-            'description' => 'required|string',
+            'description' => 'string',
+            'start_date' => 'date',
+            'end_date' => 'date',
+            'price' => 'numeric',
+            'nb_max' => 'integer',
             'category_id' => 'integer',
-            'status' => 'in:published,unpublished'
+            'status' => 'in:publié,non publié',
 
         ]);
         $post = Post::create($request->all());
