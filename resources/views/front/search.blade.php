@@ -6,7 +6,9 @@
 <ul class="list-group">
 @forelse ($posts as $post)
 <li class="list-group-item">
+	            @if(is_null($post->picture) == false)
 	<img class="card-img-top" src="{{url('images', $post->picture->link)}}" style="width: 250px;" alt="Card image cap">
+	@endif
 <h2><a href="{{url('post', $post->id)}}">{{$post->title}}</a></h2>
 <div class="row">
 

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -18,6 +19,17 @@ class Post extends Model
         'nb_max',
         'status'
     ];
+
+    public function getDateDebut($value){
+
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function scopeOrderByDate($query){
+        $dateActuelle = Carbon::now();
+
+        return $query->where('start_date', '>', $dateActuelle)->orderBy('start_date', 'ASC');
+    }
 
     public function setCategoryIdAttribute($value){
        

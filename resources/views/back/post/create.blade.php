@@ -26,7 +26,7 @@
 
                       <div class="form-group">
                         <label for="start_date">Date de début :</label>
-                        <input type="date" name="start_date" value="{{$post->start_date}}" class="form-control" id="start_date">
+                        <input type="date" name="start_date" value="{{old('start_date')}}" class="form-control" id="start_date">
                         @if($errors->has('start_date'))
                             <div class="alert alert-danger" role="alert">
                                 <span class="error">{{$errors->first('start_date')}}</span>
@@ -35,8 +35,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="$post->end_date">Date de fin :</label>
-                        <input type="date" name="end_date" value="{{$post->end_date}}" class="form-control" id="end_date">
+                        <label for="end_date">Date de fin :</label>
+                        <input type="date" name="end_date" value="{{old('end_date')}}" class="form-control" id="end_date">
                         @if($errors->has('end_date'))
                             <div class="alert alert-danger" role="alert">
                                 <span class="error">{{$errors->first('end_date')}}</span>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Prix :</label>
-                        <input type="text" name="price" value="{{$post->price}}" class="form-control" placeholder="3,4"></input>
+                        <input type="text" name="price" value="{{old('price')}}" class="form-control" placeholder="3,4"></input>
                         @if($errors->has('price'))
                             <div class="alert alert-danger" role="alert">
                                 <span class="error">{{$errors->first('price')}}</span>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nb_max">Nombre d'élèves maximum :</label>
-                        <input type="text" name="nb_max" value="{{$post->nb_max}}" class="form-control" placeholder="400"></input>
+                        <input type="text" name="nb_max" value="{{old('nb_max')}}" class="form-control" placeholder="400"></input>
                         @if($errors->has('nb_max'))
                             <div class="alert alert-danger" role="alert">
                                 <span class="error">{{$errors->first('nb_max')}}</span>
@@ -64,9 +64,9 @@
                     <div class="form-group">
                         <label for="post_type">type de post :</label>
                         <select name="post_type" id="post_type">
-                            <option value="undetermined" {{ $post->post_type == "" ? 'selected' : '' }}></option>
-                            <option value="stage" {{ $post->post_type == "stage" ? 'selected' : '' }}>Stage</option>
-                            <option value="formation" {{ $post->post_type == "formation" ? 'selected' : '' }}>Formation</option>
+                            <option value="undetermined" {{ old('post_type') == "" ? 'selected' : '' }}></option>
+                            <option value="stage" {{ old('post_type') == "stage" ? 'selected' : '' }}>Stage</option>
+                            <option value="formation" {{ old('post_type') == "formation" ? 'selected' : '' }}>Formation</option>
                         </select>
                     </div>
 

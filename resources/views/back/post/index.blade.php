@@ -7,69 +7,55 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Categorie</th>
-            <th scope="col">Date de publication</th>
-            <th scope="col" class="text-center">Status</th>
-            <th scope="col" class="text-center">Edition</th>
-            <th scope="col" class="text-center">Show</th>
-            <th scope="col" class="text-center">Delete</th>
+            <th>Titre</th>
+                    <th>Type de post</th>
+                    <th>Date de publication</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                    <th>Prix</th>
+                    <th>Statut</th>
+                    <th>Voir</th>
+                    <th>Editer</th>
+                    <th>Supprimer</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($posts as $post)
-            <tr>
-                <td><a href="{{route('post.edit', ['id' =>$post->id])}}">{{$post->title}}</a></td>
-                <td>
-                    @if(isset($post->category->title))
-                        {{ucfirst($post->category->title)}}
-                    @else
-                        Pas de catégorie
-                    @endif
-                </td>
-                <td>{{date_format($post->created_at, 'd/m/Y à H:i:s')}}</td>
-                <td class="text-center">
-                    @if($post->status == "published")
-                        <i class="fas fa-traffic-light fa-lg text-success"></i>
-                    @else
-                        <i class="fas fa-traffic-light fa-lg text-danger"></i>
-                    @endif
-                </td>
-                <td class="text-center">
-                @can('update', $post)
-                        <a href="{{route('post.edit', ['id' =>$post->id])}}">
-                            <i class="fas fa-edit fa-lg"></i>
-                        </a>
-                @endcan
-                @cannot('update', $post)
-                    <i class="fas fa-ban fa-lg text-warning"></i>
-                @endcannot
-                </td>
+         @forelse($posts as $post)
+                    <tr>
+                        <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
+                        <td>{{$post->post_type}}</td>
+                        <td>{{$post->created_at}}</td>
+                        <td>{{$post->start_date}}</td>
+                        <td>{{$post->end_date}}</td>
+                        <td>{{$post->price}}</td>
+                        <td>
+                            @if($post->status == 'publié')
+                            <button type="button" class="btn btn-success">publié</button>
+                            @else
+                            <button type="button" class="btn btn-danger">non publié</button>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{route('post.show', $post->id)}}"><span aria-hidden="true">Voir le post</span></a>
+                        </td>
+                        <td>
+                            <a href="{{route('post.edit', $post->id)}}"><i class="far fa-edit">edit</i></a>
+                        </td>
+                        <td>
+                            {{-- <form class="delete" method="POST" action="{{route('post.destroy', $post->id)}}"> DELETE
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                            </form> --}}
+                            
+                        </td>
+                        <td>
+                            <input type="checkbox" name="ids[]" value="{{$post->id}}">
+                        </td>
 
-                <td class="text-center">
-                    @can('view', $post)
-                        <a href="{{route('post.show', ['id' => $post->id])}}">
-                            <i class="fas fa-eye fa-lg"></i>
-                        </a>
-                    @endcan
-                    @cannot('view', $post)
-                        <i class="fas fa-ban fa-lg text-warning"></i>
-                    @endcannot
-                </td>
-                    <td class="text-center">
-                        @can('delete', $post)
-                            <form class="delete" action="{{route('post.destroy', ['id' => $post->id])}}" method="post">
-                                @method('delete')
-                                @csrf
-                                <i class="deleteButton fas fa-trash fa-lg text-danger"></i>
-                            </form>
-                        @endcan
-                        @cannot('delete', $post)
-                            <i class="fas fa-ban fa-lg text-warning"></i>
-                        @endcannot
-                    </td>
-            </tr>
-        @endforeach
+                    </tr>
+                @empty
+                    aucun post ...
+                @endforelse
         </tbody>
     </table>
     {{$posts->links()}}
