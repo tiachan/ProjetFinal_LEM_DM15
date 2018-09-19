@@ -13,10 +13,10 @@ class FrontController extends Controller
 	public function index(){
 
 
-       // $posts = \App\Post::orderByDate()->with('picture', 'category')->limit(2)->get();
+       $posts = \App\Post::orderBy('start_date', 'dsc')->with('picture')->limit(2)->get();
 
-         $posts = \App\Post::paginate($this->paginate); // pagination 
-        //  
+        //         $posts = \App\Post::paginate($this->paginate); // pagination 
+        
                $picture = \App\Picture::get();
               // $category = \App\Category::get()
 

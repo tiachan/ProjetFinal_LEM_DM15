@@ -7,11 +7,12 @@
     <title>Post</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-info">
+           @include('partials.menu')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-           @include('partials.menu')
         </div>
     </div>
     <div class="row">
@@ -20,10 +21,10 @@
     </div>
     </div>
     <div>
-     @include('partials.footer')
-
     </div>
 </div>
+     @include('partials.footer')
+
 <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

@@ -2,17 +2,16 @@
 
 @section('content')
 
-    <a class="btn btn-info mt-3 mb-3" href="{{route('post.create')}}">Ajouter un post</a>
+    <a class="btn text-white mt-3 mb-3 bg-primary" href="{{route('post.create')}}">Ajouter un post</a>
+    {{$posts->links()}}
 
-    <table class="table">
+    <table class="table bg-light text-dark">
         <thead>
         <tr>
             <th>Titre</th>
                     <th>Type de post</th>
                     <th>Date de publication</th>
-                    <th>Date de début</th>
-                    <th>Date de fin</th>
-                    <th>Prix</th>
+                    
                     <th>Statut</th>
                     <th>Voir</th>
                     <th>Editer</th>
@@ -25,9 +24,7 @@
                         <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
                         <td>{{$post->post_type}}</td>
                         <td>{{$post->created_at}}</td>
-                        <td>{{$post->start_date}}</td>
-                        <td>{{$post->end_date}}</td>
-                        <td>{{$post->price}}</td>
+
                         <td>
                             @if($post->status == 'publié')
                             <button type="button" class="btn btn-success">publié</button>
@@ -39,17 +36,14 @@
                             <a href="{{route('post.show', $post->id)}}"><span aria-hidden="true">Voir le post</span></a>
                         </td>
                         <td>
-                            <a href="{{route('post.edit', $post->id)}}"><i class="far fa-edit">edit</i></a>
+                            <a href="{{route('post.edit', $post->id)}}"><i class="far fa-edit">éditer</i></a>
                         </td>
                         <td>
-                            {{-- <form class="delete" method="POST" action="{{route('post.destroy', $post->id)}}"> DELETE
+                             <form class="delete" method="POST" action="{{route('post.destroy', $post->id)}}"><input type="submit" value="supprimer" class="btn btn-danger"> <i class="far fa-edit"></i>
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
-                            </form> --}}
+                            </form>
                             
-                        </td>
-                        <td>
-                            <input type="checkbox" name="ids[]" value="{{$post->id}}">
                         </td>
 
                     </tr>

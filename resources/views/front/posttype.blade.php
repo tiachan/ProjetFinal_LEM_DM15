@@ -1,10 +1,11 @@
 @extends('layouts.master')
 @section('content')
+
 <h1>Tous les posts</h1>
 
 <ul class="list-group">
 	@forelse ($posts as $post)
-	<li class="list-group-item">
+	<li class="list-group-item mb-4">
 		<h2><a href="{{url('post', $post->id)}}">{{$post->title}}</a></h2>
 		            @if(is_null($post->picture) == false)
 <img class="card-img-top" src="{{url('images', $post->picture->link)}}" style="width: 250px;" alt="Card image cap">

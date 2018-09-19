@@ -117,7 +117,7 @@ class PostController extends Controller
         }
        
         $post->save();
-        return redirect()->route('post.index')->with('success', 'Le livre à bien été mis à jour');
+        return redirect()->route('post.index')->with('success', 'Le post a bien été mis à jour');
     }
     /**
      * Remove the specified resource from storage.

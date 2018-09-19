@@ -5,7 +5,7 @@
 {{$posts->links()}}
 <ul class="list-group">
 @forelse ($posts as $post)
-<li class="list-group-item">
+<li class="list-group-item mb-4">
 	            @if(is_null($post->picture) == false)
 	<img class="card-img-top" src="{{url('images', $post->picture->link)}}" style="width: 250px;" alt="Card image cap">
 	@endif

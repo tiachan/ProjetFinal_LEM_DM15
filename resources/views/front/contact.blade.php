@@ -7,7 +7,7 @@
 
 	<div class="form-group">
 		<label for="email" class="control-label">Email</label>
-		<input type="email" name="email" id="email" class="form-control" required="required"> {{old('email')}}
+		<input type="email" name="email" id="email" class="form-control" required="required" value="{{old('email')}}"> 
 		{!! $errors->first('email', '<span class="help-block">:message</span>') !!}
 	</div>
 
