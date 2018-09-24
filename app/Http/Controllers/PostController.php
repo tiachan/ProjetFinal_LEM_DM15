@@ -19,6 +19,8 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
+        $posts = \App\Post::orderBy('created_at', 'dsc')->with('picture')->get();
+
         $this->authorize('index', Post::class);
         return view('back.post.index', ['posts' => $post::paginate(10)]);
         //
