@@ -7,9 +7,10 @@
 
 			<ul class="list-group justify-content-center">
 				@forelse ($posts as $post)
+                @if($post->status == 'publié')
 				<li class="list-group-item mb-4">
 					@if(is_null($post->picture) == false)
-					<img src="{{url('images', $post->picture->link)}}" alt="Card image cap">
+					<img class="card-img" src="{{url('images', $post->picture->link)}}" style="max-width: 250px;" alt="Card image cap">
 					@endif
 					<h2><a href="{{url('post', $post->id)}}">{{$post->title}}</a></h2>
 					<div class="row">
@@ -20,12 +21,14 @@
 						</div>
 					</div>
 				</li>
+				@endif
+
 				@empty
 				<li>Désolé pour l'instant aucun post n'est publié sur le site</li>
 				@endforelse
 			</ul>
 		</div>
-		<div class="col-4 bg-light pt-5 mt-5 mb-4">
+		<div class="list-group col-4 bg-light pt-5 mt-5 mb-4">
 			<form class="form-inline my-2 my-lg-0 ml-3"  action="{{route('search')}}" method="get">
 							<h4>Vous pouvez également chercher d'autres posts ici :</h4>
 

@@ -8,6 +8,8 @@ use Carbon\Carbon;
 class Post extends Model
 {
 
+
+
 	protected $fillable = [
         'title', 
         'description', 
@@ -20,7 +22,7 @@ class Post extends Model
         'status'
     ];
 
-    public function getDateDebut($value){
+    public function getStartDate($value){
 
         return Carbon::parse($value)->format('d/m/Y');
     }

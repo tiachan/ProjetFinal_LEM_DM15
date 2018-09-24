@@ -25,4 +25,17 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+        public function showBackResearch(Request $request){
+
+        $query = $request->search;
+
+        $posts = \App\Post::where('title', 'LIKE', '%' . $query . '%')
+            ->orWhere('description', 'LIKE', '%' . $query . '%')
+            ->orWhere('post_type', 'LIKE', '%' . $query . '%')
+            ->paginate(5);
+
+        return view('back.post.search', ['posts' => $posts]); 
+
+    }
 }

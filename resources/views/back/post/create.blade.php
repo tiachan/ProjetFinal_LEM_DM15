@@ -1,10 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-        <div class="row">
-            <h2>Création d'un nouveau post</h2>
+<div class="row justify-content-center">
         </div>
-        <div class="row">
+        <div class="table bg-light text-dark pl-4 pt-4 pb-4">
+            <h2>Création d'un nouveau post</h2>
+
             <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                 <div class="col-6">
@@ -70,7 +71,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
+<!--                     <div class="form-group">
                         <label for="genre">Catégorie: </label>
                         <select class="form-control" name="genre_id" id="genre">
                             <option value="0">Pas de genre</option>
@@ -79,7 +80,7 @@
                             @empty
                             @endforelse
                         </select>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-6">

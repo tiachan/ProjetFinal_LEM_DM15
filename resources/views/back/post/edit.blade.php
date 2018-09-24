@@ -64,16 +64,7 @@
                     <option value="formation" {{ $post->post_type == "formation" ? 'selected' : '' }}>Formation</option>
                 </select>
             </div>
-            <div class="form-group">
-                <h2">Catégorie: </h2>
-                <select class="form-control" name="category_id" id="category">
-                    <option value="0">Pas de catégorie</option>
-                    @forelse($categories as $id => $category)
-                    <option value="{{$id}}" {{old('category_id') == $id ? "selected" : ""}}>{{ucfirst($category->name)}}</option>
-                    @empty
-                    @endforelse
-                </select>
-            </div>
+        <!-- Catégories -->
         </div>
         <div >
             <div class="form-group">

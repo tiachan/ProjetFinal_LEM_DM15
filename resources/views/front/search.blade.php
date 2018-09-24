@@ -5,6 +5,8 @@
 {{$posts->links()}}
 <ul class="list-group">
 @forelse ($posts as $post)
+@if($post->status == 'publié')
+
 <li class="list-group-item mb-4">
 	            @if(is_null($post->picture) == false)
 	<img class="card-img-top" src="{{url('images', $post->picture->link)}}" style="width: 250px;" alt="Card image cap">
@@ -16,9 +18,9 @@
 {{$post->description}}
 </div>
 </div>
-
+@endif
 @empty
-<li>Désolé pour l'instant aucun post n'est publié sur le site</li>
+<li>Aucun post ne correspond à votre recherche</li>
 @endforelse
 </ul>
 {{$posts->links()}}

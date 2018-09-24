@@ -5,6 +5,8 @@
 
 <ul class="list-group">
 	@forelse ($posts as $post)
+	@if($post->status == 'publié')
+
 	<li class="list-group-item mb-4">
 		<h2><a href="{{url('post', $post->id)}}">{{$post->title}}</a></h2>
 		            @if(is_null($post->picture) == false)
@@ -18,6 +20,7 @@
 
 			</div>
 		</div>
+		@endif
 		@empty
 		<li>Désolé pour l'instant aucun post n'est publié sur le site</li>
 		@endforelse

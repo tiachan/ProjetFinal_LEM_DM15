@@ -21,6 +21,8 @@ Route::get('/', 'FrontController@index')-> name('index');
 
 Route::get('/search', 'FrontController@showResearch')->name('search');
 
+Route::get('/admin/search', 'HomeController@showBackResearch')->name('backSearch');
+
 
 Route::get('/post/{id}', 'FrontController@show')->where(['id'=>'[0-9]+']);
 

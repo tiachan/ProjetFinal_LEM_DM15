@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 
 class PostController extends Controller
@@ -33,9 +34,13 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
         $categories = Category::pluck('title', 'id')->all();
+
         return view('back.post.create', ['categories' => $categories]);
 
         $post->save();
+
+        flashy('Poste créé.');
+
         // return redirect()->route('post.index')->with('success', 'Le post à bien été créé');
     }
     /**
@@ -53,7 +58,7 @@ class PostController extends Controller
             'title' => 'required',
             'description' => 'string',
             'start_date' => 'date',
-            'end_date' => 'date',
+            'end_date' => 'date|after:start_date',
             'price' => 'numeric',
             'nb_max' => 'integer',
             'category_id' => 'integer',
@@ -80,7 +85,13 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $this->authorize('view', Post::class);
-        return view('back.post.show', ['post' => $post]);
+
+        $start_date = Carbon::parse($post->start_date)->format('d-m-Y');
+        $end_date = Carbon::parse($post->end_date)->format('d-m-Y');
+
+        return view('back.post.show', ['post' => $post,
+                                        'start_date' => $start_date,
+                                        'end_date' => $end_date]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -108,7 +119,7 @@ class PostController extends Controller
         $post->update($request->all());
         $file = $request->file('picture');
         if(!empty($file)) {
-            if(count($post->picture) > 0) {
+            if(is_null($post->picture) === false) {
                 Storage::disk('local')->delete($post->picture->link);
                 $post->picture()->delete();
             }
@@ -117,6 +128,9 @@ class PostController extends Controller
         }
        
         $post->save();
+
+        flashy('Poste mis à jour.');
+
         return redirect()->route('post.index')->with('success', 'Le post a bien été mis à jour');
     }
     /**
@@ -128,7 +142,11 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+
+                flashy('Poste supprimé.');
+
         return redirect()->route('post.index')->with('success', 'Le post a bien été supprimé');
+
     }
     
     private function savePicture(Post $post, $link)

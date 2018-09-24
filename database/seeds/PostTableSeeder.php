@@ -29,16 +29,16 @@ class PostTableSeeder extends Seeder
             factory(App\Post::class, 40)->create()->each(function($post){
 
 
-            // $category = App\Category::find(rand(1,3));
+            $category = App\Category::find(rand(1,4));
+            $post->categories()->attach($category);
 
-            // $post->categories()->associate($category);
 
             $post->save();
 
 
             $link = str_random(12) . '.jpg';
 
-            $file = file_get_contents('http://via.placeholder.com/250x250/' . rand(1, 9));
+            $file = file_get_contents('https://picsum.photos/250/250?image' . rand(1, 20));
             Storage::disk('local')->put($link, $file);
 
             $post->picture()->create([
@@ -48,8 +48,6 @@ class PostTableSeeder extends Seeder
 
             $post->save();
 
-            $category = App\Category::find(rand(1,4));
-            $post->categories()->attach($category);
 
         });
         }

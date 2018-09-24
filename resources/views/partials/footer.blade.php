@@ -23,7 +23,7 @@
 
      </div>
 <div class="col align-self-end text-white">
-  <h6>Copyright - 2017 Fanny Blandenet</h6>
+  <h6>Copyright - 2018 Fanny Blandenet</h6>
 </div>
 </div>
 </div>
